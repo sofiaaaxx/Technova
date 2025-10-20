@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technova Inventarios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a1d37, #1b263b);
+            color: #d5e1df;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a8a, #2a4580);
+            color: #d5e1df;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .hero {
+            background: rgba(26, 32, 44, 0.9);
+            padding: 50px 20px;
+            margin: 20px auto;
+            border-radius: 15px;
+            max-width: 1100px;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        nav {
+            background: rgba(14, 20, 30, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            margin: 0 30px;
+            text-decoration: none;
+            color: #a3bffa;
+            font-weight: 600;
+            font-size: 1.2em;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #a3bffa;
+            transition: width 0.3s ease;
+        }
+        nav a:hover {
+            color: #4e79a7;
+            transform: scale(1.1);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+        section {
+            display: none;
+            padding: 90px 50px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            margin: 30px auto;
+            max-width: 1200px;
+            animation: fadeIn 0.9s ease-in-out;
+        }
+        section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            color: #4e79a7;
+            font-size: 2.5em;
+            margin-bottom: 35px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        h3 {
+            color: #4e79a7;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 1.15em;
+            max-width: 950px;
+            margin: 0 auto 25px;
+            opacity: 0.85;
+        }
+        .social-icons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        .social-icons a {
+            text-decoration: none;
+            color: #a3bffa;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(78, 121, 167, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s, color 0.3s, background 0.3s;
+        }
+        .social-icons a:hover {
+            transform: scale(1.1);
+            color: #4e79a7;
+            background: rgba(78, 121, 167, 0.2);
+        }
+        .social-icons .icon {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            padding: 30px;
+        }
+        .service-card {
+            background: linear-gradient(135deg, #1b263b, #22303d);
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            padding: 35px;
+            text-align: center;
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+        .service-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+        }
+        .service-card h3 {
+            color: #4e79a7;
+            font-size: 1.7em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .service-card p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+        .price {
+            color: #4e79a7;
+            font-size: 1.4em;
+            font-weight: bold;
+            background: rgba(78, 121, 167, 0.15);
+            padding: 12px 20px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+        footer {
+            background: linear-gradient(135deg, #1e3a8a, #2a4580);
+            color: #d5e1df;
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            font-size: 1em;
+        }
+        footer p {
+            opacity: 0.7;
+        }
+        footer a {
+            color: #a3bffa;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #4e79a7;
+        }
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+            nav a {
+                margin: 12px 0;
+            }
+            .services {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            header {
+                padding: 50px 10px;
+            }
+            section {
+                padding: 60px 20px;
+            }
+            .social-icons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .social-icons a {
+                justify-content: center;
+            }
+        }
+    </style>
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll("section");
+            sections.forEach(sec => sec.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+
+        window.onload = () => {
+            showSection("acerca");
+        };
+    </script>
+</head>
+<body>
+    <header> <img src="C:\Users\Gato Panzon\Downloads\WhatsApp Image 2025-10-20 at 17.13.50.jpeg" alt="Logo" style="max-width: 200px; height: auto; display: block; margin: 0 auto;">
+        <h1>Technova Inventarios</h1>
+        <p>Transformamos la gestión de inventarios con soluciones inteligentes y personalizadas, adaptadas a tus necesidades comerciales desde cualquier lugar y en cualquier momento.</p>
+    </header>
+
+    <nav>
+        <a onclick="showSection('acerca')">Acerca de Nosotros</a>
+        <a onclick="showSection('publicidad')">Publicidad</a>
+        <a onclick="showSection('servicios')">Servicios</a>
+    </nav>
+
+    <div class="hero">
+        <section id="acerca">
+            <h2>Acerca de Nosotros</h2>
+            <h3>Misión</h3>
+            <p>En TechNova ofrecemos un software de inventario sencillo y personalizable, pensado para emprendedores y pequeños comerciantes que necesitan organizar sus productos y pedidos con mayor facilidad y seguridad. Nuestro objetivo es brindar una herramienta accesible y práctica que se adapte a las necesidades reales de cada negocio, acompañando a nuestros clientes en el proceso de mejorar su gestión diaria.</p>
+            <h3>Visión</h3>
+            <p>En los próximos cinco años, buscamos consolidarnos como una empresa confiable y cercana para pequeños negocios en Colombia, siendo reconocidos por ofrecer un software de inventario accesible, seguro y adaptable. Nuestra meta es crecer de la mano de nuestros clientes, mejorando continuamente el sistema y expandiéndonos a más sectores del comercio local.</p>
+            <h3>¿Quiénes somos?</h3>
+            <p>En TechNova somos un equipo de jóvenes emprendedores comprometidos con la innovación tecnológica y el crecimiento de los pequeños negocios. Nuestro propósito es facilitar la gestión de inventarios a través de un software personalizado, sencillo y seguro, que se adapta a las necesidades de cada cliente.</p>
+            <p>Creemos que la tecnología debe estar al alcance de todos, por eso trabajamos en desarrollar herramientas accesibles y fáciles de usar, que permitan a comerciantes y emprendedores ahorrar tiempo, reducir errores y tener un mayor control sobre sus productos y pedidos.</p>
+            <p>Más que un proveedor de software, buscamos ser un aliado confiable para cada negocio, ofreciendo acompañamiento cercano, soporte técnico y mejoras continuas en nuestras soluciones.</p>
+        </section>
+    </div>
+
+    <section id="publicidad">
+        <h2>Publicidad</h2>
+        <p>Impulsa tu negocio con nuestro inventario digital de última generación. Descubre cómo puedes gestionar tus productos con facilidad y precisión. Conéctate con nosotros a través de nuestras redes sociales para recibir promociones exclusivas, actualizaciones y consejos prácticos para tu emprendimiento.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/1RUxuzDvfV/" target="_blank"><span class="icon">🌐</span> Facebook</a>
+            <a href="https://www.instagram.com/technova_inv?igsh=MTljb2E4NWpld3o0ag==" target="_blank"><span class="icon">📸</span> Instagram</a>
+            <a href="https://wa.me/message/TT3CCZHLMXWWA1" target="_blank"><span class="icon">💬</span> WhatsApp</a>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2>Servicios</h2>
+        <div class="services">
+            <div class="service-card">
+                <h3>Inventario Básico</h3>
+                <p>Ideal para pequeños emprendedores que buscan un inicio sencillo. Incluye seguimiento básico, reportes diarios y soporte inicial.</p>
+                <p class="price">250.000 COP / mes</p>
+            </div>
+            <div class="service-card">
+                <h3>Inventario Pro</h3>
+                <p>Perfecto para negocios en expansión, con funciones avanzadas como análisis de datos, seguridad mejorada y reportes personalizados.</p>
+                <p class="price">450.000 COP / mes</p>
+            </div>
+            <div class="service-card">
+                <h3>Inventario Premium</h3>
+                <p>Diseñado para empresas consolidadas, ofrece personalización total, integración con otros sistemas y soporte prioritario 24/7.</p>
+                <p class="price">700.000 COP / mes</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Technova Inventarios - Todos los derechos reservados </a></p>
+    </footer>
+</body>
+</html>
